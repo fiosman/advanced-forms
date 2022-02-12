@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import spi from "../_assets/spi.json";
 
 const SensoryPreferencesSurvey = () => {
   return (

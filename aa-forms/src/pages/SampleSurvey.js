@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import sample from "../_assets/sample.json";
 
 const SampleSurvey = () => {
   return (
