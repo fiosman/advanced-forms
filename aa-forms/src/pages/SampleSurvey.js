@@ -5,9 +5,10 @@ import sample from "../_assets/sample.json";
 const SampleSurvey = () => {
   const [reasonOption, setReasonOption] = useState();
   const [planningUseOption, setPlanningUseOption] = useState();
-  const Questions = () => {
+  const [whyInput, setWhyInput] = useState();
+
+  const buildQuestions = () => {
     const questions = sample.questions;
-    console.log(sample);
     return (
       <ul>
         <li>
@@ -44,20 +45,27 @@ const SampleSurvey = () => {
             );
           })}
         </li>
+        <li>
+          <p>{questions[2].stem}</p>
+          <textarea
+            placeholder="Add your reason here"
+            value={whyInput}
+            onChange={(e) => setWhyInput(e.target.value)}
+          />
+        </li>
       </ul>
     );
   };
+
   return (
     <div>
       <h2>
         {sample.name} {sample.description}
       </h2>
       <p>{sample.instructions}</p>
-      <Questions />
+      {buildQuestions()}
+      <p>{sample.questions[3].instructions}</p>
       <Link to="/">Home </Link>
-      <form>
-        <h3></h3>
-      </form>
     </div>
   );
 };
