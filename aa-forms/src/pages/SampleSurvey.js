@@ -6,6 +6,9 @@ const SampleSurvey = () => {
   const [reasonOption, setReasonOption] = useState();
   const [planningUseOption, setPlanningUseOption] = useState();
   const [whyInput, setWhyInput] = useState();
+  const [firstName, setFirstName] = useState();
+  const [emailAddress, setEmailAddress] = useState();
+  const [additionalFeedback, setAdditonalFeedback] = useState();
 
   const buildQuestions = () => {
     const questions = sample.questions;
@@ -48,7 +51,7 @@ const SampleSurvey = () => {
         <li>
           <p>{questions[2].stem}</p>
           <textarea
-            placeholder="Add your reason here"
+            placeholder="Type your reason here"
             value={whyInput}
             onChange={(e) => setWhyInput(e.target.value)}
           />
@@ -57,15 +60,48 @@ const SampleSurvey = () => {
     );
   };
 
+  const buildContactInfo = () => {
+    const questions = sample.questions;
+    return (
+      <ul>
+        <li>
+          <p>{questions[4].stem}</p>
+          <textarea
+            placeholder="Type your first name here"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </li>
+        <li>
+          <p>{questions[5].stem}</p>
+          <textarea
+            placeholder="Type your email address"
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
+          />
+        </li>
+        <li>
+          <p>{questions[6].stem}</p>
+          <textarea
+            placeholder="Type your first name here"
+            value={additionalFeedback}
+            onChange={(e) => setAdditonalFeedback(e.target.value)}
+          />
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <div>
+      <Link to="/">Home </Link>
       <h2>
         {sample.name} {sample.description}
       </h2>
       <p>{sample.instructions}</p>
       {buildQuestions()}
       <p>{sample.questions[3].instructions}</p>
-      <Link to="/">Home </Link>
+      {buildContactInfo()}
     </div>
   );
 };
