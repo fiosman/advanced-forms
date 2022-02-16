@@ -83,7 +83,7 @@ const SampleSurvey = () => {
         <li>
           <p>{questions[6].stem}</p>
           <textarea
-            placeholder="Type your first name here"
+            placeholder="Give feedback here"
             value={additionalFeedback}
             onChange={(e) => setAdditonalFeedback(e.target.value)}
           />
