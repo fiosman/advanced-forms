@@ -9,6 +9,7 @@ const SampleSurvey = () => {
   const [firstName, setFirstName] = useState();
   const [emailAddress, setEmailAddress] = useState();
   const [additionalFeedback, setAdditonalFeedback] = useState();
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const buildQuestions = () => {
     const questions = sample.questions;
@@ -25,6 +26,7 @@ const SampleSurvey = () => {
                   onChange={() => setReasonOption(option.value)}
                   value={option.value}
                   name={option.value}
+                  disabled={isFormSubmitted}
                 />
                 <label>{option.text}</label>
               </>
@@ -42,6 +44,7 @@ const SampleSurvey = () => {
                   onChange={() => setPlanningUseOption(option.value)}
                   value={option.value}
                   name={option.value}
+                  disabled={isFormSubmitted}
                 />
                 <label>{option.text}</label>
               </>
@@ -54,6 +57,7 @@ const SampleSurvey = () => {
             placeholder="Type your reason here"
             value={whyInput}
             onChange={(e) => setWhyInput(e.target.value)}
+            disabled={isFormSubmitted}
           />
         </li>
       </ul>
@@ -70,6 +74,7 @@ const SampleSurvey = () => {
             placeholder="Type your first name here"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            disabled={isFormSubmitted}
           />
         </li>
         <li>
@@ -86,10 +91,16 @@ const SampleSurvey = () => {
             placeholder="Give feedback here"
             value={additionalFeedback}
             onChange={(e) => setAdditonalFeedback(e.target.value)}
+            disabled={isFormSubmitted}
           />
         </li>
       </ul>
     );
+  };
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    setIsFormSubmitted(true);
   };
 
   return (
@@ -99,9 +110,13 @@ const SampleSurvey = () => {
         {sample.name} {sample.description}
       </h2>
       <p>{sample.instructions}</p>
-      {buildQuestions()}
-      <p>{sample.questions[3].instructions}</p>
-      {buildContactInfo()}
+      {isFormSubmitted && <h2>Thank you for the submission!</h2>}
+      <form onSubmit={formSubmitHandler}>
+        {buildQuestions()}
+        <p>{sample.questions[3].instructions}</p>
+        {buildContactInfo()}
+        <input type="submit" value="Submit" disabled={isFormSubmitted} />
+      </form>
     </div>
   );
 };
