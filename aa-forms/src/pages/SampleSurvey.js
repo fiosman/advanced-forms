@@ -115,7 +115,11 @@ const SampleSurvey = () => {
         {buildQuestions()}
         <p>{sample.questions[3].instructions}</p>
         {buildContactInfo()}
-        <input type="submit" value="Submit" disabled={isFormSubmitted} />
+        <input
+          type="submit"
+          value="Submit"
+          disabled={isFormSubmitted || !planningUseOption || !reasonOption || !whyInput}
+        />
       </form>
     </div>
   );
