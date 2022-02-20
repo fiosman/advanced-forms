@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import spi from "../_assets/spi.json";
 
 const SensoryPreferencesSurvey = () => {
-  console.log(spi);
-  const buildQuestions = () => {};
+  const questions = spi.questions.slice(1);
+
+  // const buildQuestions = () => {};
   return (
     <div>
       <div>
