@@ -8,28 +8,28 @@ const SensoryPreferencesSurvey = () => {
   const buildQuestions = () => {
     return (
       <ul>
-        {questions.map((question) => {
+        {questions.map((question, idx) => {
           return (
-            <li>
+            <li key={idx}>
               <p>{question.stem}</p>
               <label>
-                <input type="radio"></input>
+                <input type="radio" value="strongly-agree" name="strongly-agree" />
                 Strongly Agree
               </label>
               <label>
-                <input type="radio"></input>
+                <input type="radio" value="agree" name="agree" />
                 Agree
               </label>
               <label>
-                <input type="radio"></input>
+                <input type="radio" value="neutral" name="neutral" />
                 Netural
               </label>
               <label>
-                <input type="radio"></input>
+                <input type="radio" value="disagree" name="disagree" />
                 Disagree
               </label>
               <label>
-                <input type="radio"></input>
+                <input type="radio" value="strongly-disagree" name="strongly-disagree" />
                 Strongly Disagree
               </label>
             </li>
