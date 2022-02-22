@@ -71,6 +71,34 @@ const SensoryPreferencesSurvey = () => {
       </ul>
     );
   };
+
+  const tallyScores = () => {
+    let totalScore = 0;
+    for (let question in response) {
+      const questionResponse = response[question].res;
+      switch (questionResponse) {
+        case "strongly-agree":
+          totalScore += 5;
+          break;
+        case "agree":
+          totalScore += 4;
+          break;
+        case "neutral":
+          totalScore += 3;
+          break;
+        case "disagree":
+          totalScore += 2;
+          break;
+        case "strongly-disagree":
+          totalScore += 1;
+          break;
+        default:
+          break;
+      }
+    }
+    return totalScore;
+  };
+
   return (
     <div>
       <div>
