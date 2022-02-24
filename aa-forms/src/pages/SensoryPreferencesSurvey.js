@@ -21,6 +21,7 @@ const SensoryPreferencesSurvey = () => {
     13: { res: "" },
     14: { res: "" },
   });
+  const [score, tallyScore]
 
   const buildQuestions = () => {
     return (
@@ -106,6 +107,7 @@ const SensoryPreferencesSurvey = () => {
         <h3>Sensory Preferences Survey</h3>
         <p>{spi.questions[0].instructions}</p>
         {buildQuestions()}
+        <SummaryReport score={tallyScores()}
       </div>
     </div>
   );
