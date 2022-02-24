@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import spi from "../_assets/spi.json";
+import SummaryReport from "./SummaryReport";
 
 const SensoryPreferencesSurvey = () => {
   const questions = spi.questions.slice(1);
@@ -21,7 +22,8 @@ const SensoryPreferencesSurvey = () => {
     13: { res: "" },
     14: { res: "" },
   });
-  const [score, tallyScore]
+  const [score, setScore] = useState(0);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const buildQuestions = () => {
     return (
@@ -107,7 +109,7 @@ const SensoryPreferencesSurvey = () => {
         <h3>Sensory Preferences Survey</h3>
         <p>{spi.questions[0].instructions}</p>
         {buildQuestions()}
-        <SummaryReport score={tallyScores()}
+        {formSubmitted && <SummaryReport score={score} />}
       </div>
     </div>
   );
