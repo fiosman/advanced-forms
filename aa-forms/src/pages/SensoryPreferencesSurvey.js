@@ -37,6 +37,7 @@ const SensoryPreferencesSurvey = () => {
                 value="strongly-agree"
                 onChange={() => setResponse({ ...response, [idx]: { res: "strongly-agree" } })}
                 checked={response[idx].res === "strongly-agree"}
+                disabled={formSubmitted}
               />
               <label>Strongly Agree</label>
               <input
@@ -44,6 +45,7 @@ const SensoryPreferencesSurvey = () => {
                 value="agree"
                 onChange={() => setResponse({ ...response, [idx]: { res: "agree" } })}
                 checked={response[idx].res === "agree"}
+                disabled={formSubmitted}
               />
               <label>Agree</label>
 
@@ -52,6 +54,7 @@ const SensoryPreferencesSurvey = () => {
                 value="neutral"
                 onChange={() => setResponse({ ...response, [idx]: { res: "neutral" } })}
                 checked={response[idx].res === "neutral"}
+                disabled={formSubmitted}
               />
               <label>Netural</label>
               <input
@@ -59,6 +62,7 @@ const SensoryPreferencesSurvey = () => {
                 value="disagree"
                 onChange={() => setResponse({ ...response, [idx]: { res: "disagree" } })}
                 checked={response[idx].res === "disagree"}
+                disabled={formSubmitted}
               />
               <label>Disagree</label>
               <input
@@ -66,6 +70,7 @@ const SensoryPreferencesSurvey = () => {
                 value="strongly-disagree"
                 onChange={() => setResponse({ ...response, [idx]: { res: "strongly-disagree" } })}
                 checked={response[idx].res === "strongly-disagree"}
+                disabled={formSubmitted}
               />
               <label>Strongly Disagree</label>
             </li>
@@ -102,13 +107,22 @@ const SensoryPreferencesSurvey = () => {
     return totalScore;
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setScore(tallyScores());
+    setFormSubmitted(true);
+  };
+
   return (
     <div>
       <div>
         <Link to="/">Home </Link>
-        <h3>Sensory Preferences Survey</h3>
-        <p>{spi.questions[0].instructions}</p>
-        {buildQuestions()}
+        <form onSubmit={handleFormSubmit}>
+          <h3>Sensory Preferences Survey</h3>
+          <p>{spi.questions[0].instructions}</p>
+          {buildQuestions()}
+          <input type="submit" value="Submit" disabled={formSubmitted} />
+        </form>
         {formSubmitted && <SummaryReport score={score} />}
       </div>
     </div>
